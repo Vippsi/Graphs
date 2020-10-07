@@ -4,7 +4,6 @@ Simple graph implementation
 from util import Stack, Queue  # These may come in handy
 
 class Graph:
-
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
     def __init__(self):
         self.vertices = {}
@@ -53,19 +52,25 @@ class Graph:
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
+        # Init the stack
         s = Stack()
+        # Init the set for the visited nodes
         visited = set()
 
+        # add the starting node(vert) to the tack
         s.push(starting_vertex)
 
         while s.size() > 0:
+            # grab the first item in the stack
             v = s.pop()
 
             if v not in visited:
+                # if that vert has not been visited, add it to the visited set
                 print(v)
                 visited.add(v)
-
+                # Grab the neighbors for the given vertex
                 for neighbor in self.get_neighbors(v):
+                    # add them to the stack to be processed
                     s.push(neighbor)
 
     def dft_recursive(self, starting_vertex, visited=None):
@@ -113,7 +118,7 @@ class Graph:
                 print("new path -->", new_path)
                 q.enqueue(new_path)
 
-        """ 	def bfs(self, starting_vertex_id, target_vertex_id):
+        """def bfs(self, starting_vertex_id, target_vertex_id):
 		# Create an empty queue and enqueue A PATH TO the starting vertex ID
 		# Create a Set to store visited vertices
 		# While the queue is not empty...
@@ -125,7 +130,7 @@ class Graph:
 				# Mark it as visited...
 				# Then add A PATH TO its neighbors to the back of the queue
 				  # COPY THE PATH
-				  # APPEND THE NEIGHOR TO THE BACK """
+				  # APPEND THE NEIGHBOR TO THE BACK """
 
     def dfs(self, starting_vertex, destination_vertex, visited=[]):
         """
